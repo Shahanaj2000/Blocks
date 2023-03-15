@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:block_statemanagement/Counter/counter_bloc.dart';
+//import 'package:block_statemanagement/Counter/counter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-//import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:block_statemanagement/counter/counter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -90,7 +90,7 @@ class MyHomePage extends StatelessWidget {
             ),
             BlocBuilder<CounterBloc, CounterState>(
               builder: (context, state) {
-                log('Builder -> called');
+                log('Block Builder -> called');
                 return Text(
                   '${state.count}', 
                   style: Theme.of(context).textTheme.headline4,
@@ -105,13 +105,13 @@ class MyHomePage extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-            context.read<CounterBloc>().add(Decrement());
+            context.read<CounterBloc>().add(const Decrement());
           },tooltip: 'Decrement',
           child: const Icon(Icons.remove),
           ),
           FloatingActionButton(
             onPressed: () {
-              context.read<CounterBloc>().add(Increment());
+              context.read<CounterBloc>().add(const Increment());
               //BlocProvider.of<CounterBloc>(context).add(Increment()); // old method
             },
             tooltip: 'Increment',
